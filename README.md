@@ -5,7 +5,8 @@
 ## 项目概述
 
 这个项目旨在帮助你自动化修改指定小米运动账户的步数，适用于微信运动步数修改。它使用 GitHub Actions 来调度脚本的运行，并利用 Telegram 来通知你关于步数修改的情况。
-<img width="862" alt="image" src="https://github.com/ymyuuu/step/assets/135582157/76a2f458-e176-4174-a4ff-d12908bad3ef">
+<img width="876" alt="image" src="https://github.com/ymyuuu/step/assets/135582157/ff13d0c2-ed20-4d32-b7b8-6b2d7bed886c">
+
 
 
 ## 项目要求
