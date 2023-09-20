@@ -3,7 +3,9 @@ name: Run Your Python Script
 on:
   push:
     branches:
-      - main  # 触发分支可以根据你的需求进行更改
+      - main
+  schedule:
+    - cron: '6 10 * * *'  # 在UTC时间上午10点6分运行
 
 jobs:
   build:
