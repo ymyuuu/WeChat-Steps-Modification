@@ -26,4 +26,4 @@ jobs:
         TELEGRAM_API_TOKEN: ${{ secrets.TELEGRAM_API_TOKEN }}
         TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
         ACCOUNTS_AND_PASSWORDS: ${{ secrets.ACCOUNTS_AND_PASSWORDS }}
-      run: steps.py  # 根据你的脚本文件名修改这里
+      run: py.py # 根据你的脚本文件名修改这里
