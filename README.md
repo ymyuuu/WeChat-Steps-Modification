@@ -1,72 +1,44 @@
-# 微信运动 Python 脚本自动修改步数
+# 项目名称: WeChat-Steps-Modification
 
-该项目允许你使用 GitHub Actions 在特定时间或通过推送到主分支触发的方式运行一个 Python 脚本，该脚本用于自动修改指定小米运动账户的步数。此 README 将详细介绍如何设置和使用该项目。
+这个项目是一个 GitHub Actions 自动化工作流，可以定期或在代码推送到主分支时运行你的 Python 脚本。它还支持 Telegram 推送，仅在脚本执行失败时才会发送通知。以下是关于项目的详细介绍和使用方法。
 
-## 项目概述
+## 项目简介
 
-这个项目旨在帮助你自动化修改指定小米运动账户的步数，适用于微信运动步数修改。它使用 GitHub Actions 来调度脚本的运行，并利用 Telegram 来通知你关于步数修改的情况。
-<img width="876" alt="image" src="https://github.com/ymyuuu/step/assets/135582157/ff13d0c2-ed20-4d32-b7b8-6b2d7bed886c">
+这个项目旨在帮助你自动运行 Python 脚本，并使用 GitHub Actions 进行调度。你可以定期运行脚本，也可以在代码推送到主分支时触发脚本的运行。如果脚本执行失败，你将收到 Telegram 推送通知，以便及时处理问题。
+<img width="876" alt="image" src="https://github.com/ymyuuu/WeChat-Steps-Modification/assets/135582157/2034a3bc-4052-4394-b4ac-0891329984a9">
 
 
+## 如何使用
 
-## 项目要求
+### 步骤 1: Fork 该项目
 
-在开始使用此项目之前，确保你满足以下要求：
+首先，你需要 Fork 这个项目到你自己的 GitHub 仓库。点击页面右上角的 "Fork" 按钮来复制项目到你的账户下。
 
-- 一个 GitHub 账户和仓库用于托管你的代码。
-- 一个 Telegram Bot 的 API Token 用于发送通知消息。
-- 一个 Telegram 聊天 ID，指定你希望接收通知消息的聊天。
-- 账号和密码的列表，用于访问需要修改步数的应用程序。
+### 步骤 2: 设置 Telegram 推送
 
-## 设置项目
+在项目设置中，你需要设置以下的 Secrets，以便项目可以发送 Telegram 推送通知。
 
-### 1. 创建 Telegram Bot
+- `TELEGRAM_API_TOKEN`：你的 Telegram Bot API Token。
+- `TELEGRAM_CHAT_ID`：你的 Telegram 聊天 ID，可以是个人聊天或群组聊天的 ID。
 
-首先，创建一个 Telegram Bot 并获取其 API Token。你可以通过与 [BotFather](https://core.telegram.org/bots#botfather) 交互来创建一个新的 Telegram Bot，并获取 API Token。
+### 步骤 3: 设置运行时间
 
-### 2. 获取 Telegram 聊天 ID
+默认情况下，该工作流会在每天的UTC时间上午10点6分运行一次。你可以根据自己的需求修改运行时间，编辑 `.github/workflows/main.yml` 文件中的 `schedule` 部分。有关如何配置 Cron 表达式的详细信息，请参考 [Cron 表达式生成器](https://crontab.guru/)。
 
-为了将通知消息发送到 Telegram，你需要获取你希望接收通知消息的聊天 ID。你可以使用 [userinfobot](https://core.telegram.org/bots#usernames-and-telegram-ids) 来获取自己的 Telegram 聊天 ID。
+### 步骤 4: 自定义步数修改
 
-### 3. 配置 GitHub 仓库 Secrets
+Python 脚本中包含了一个步数修改函数 `modify_steps`，它用于随机生成指定账号的步数并发送到特定的 URL。你可以根据需要修改步数的最小值和最大值，以及 URL。请确保 URL 符合你的需求，并在代码中修改。
 
-在你的 GitHub 仓库中，转到 Settings > Secrets，然后添加以下 Secrets：
+### 步骤 5: 自定义默认值
 
-- `TELEGRAM_API_TOKEN`：将你的 Telegram Bot 的 API Token 添加为此 Secret。
-- `TELEGRAM_CHAT_ID`：将你的 Telegram 聊天 ID 添加为此 Secret。
-- `ACCOUNTS_AND_PASSWORDS`：将账号和密码组成的列表添加为此 Secret。列表中每个元素都应该是一个以逗号分隔的字符串，表示一个账号和密码的组合，如 "username1,password1;username2,password2"。
-
-### 4. 修改 Python 脚本
-
-确保 Python 脚本中的以下内容正确设置：
-
-- `telegram_api_token`：应该从 Secrets 中读取 Telegram API Token。
-- `telegram_chat_id`：应该从 Secrets 中读取 Telegram 聊天 ID。
-- `accounts_and_passwords`：应该从 Secrets 中读取账号和密码。
-
-### 5. 定义步数修改范围（可自定义）
-
-在 Python 脚本中，你可以定义步数的修改范围，即 `min_steps` 和 `max_steps` 变量。这将控制每个账号修改的步数范围。默认情况下，范围为 50000 到 80000 步。
-
-### 6. 定义运行时间（可自定义）
-
-你可以通过编辑 GitHub Actions 工作流程文件中的 `schedule` 部分来自定义脚本的运行时间。默认情况下，脚本将在 UTC 时间上午10点6分运行，但你可以根据需要进行修改。
-
-## 使用方法
-
-一旦设置好项目并配置了 Secrets，你就可以开始使用它了。以下是使用该项目的步骤：
-
-1. 推送到主分支：如果你设置了推送到主分支触发 GitHub Actions 工作流程，只需将代码推送到主分支即可。工作流程将在你定义的时间（默认为 UTC 时间上午10点6分）自动运行。
-
-2. 手动触发工作流程（可选）：如果你没有设置自动触发工作流程，可以在 GitHub 仓库的 Actions 选项卡中手动触发工作流程。选择适当的工作流程并点击 "Run workflow" 按钮。
-
-3. 查看通知（仅在失败时推送到 Telegram）：一旦工作流程运行完成，并且步数修改失败，它将通过 Telegram 向你发送通知消息，告诉你每个账号的步数修改情况。
+在 Python 脚本中，有一些默认的设置，包括最小和最大步数、Telegram 推送的条件等。你可以根据需要自定义这些默认值，以满足你的具体需求。
 
 ## 注意事项
 
-- 请注意，默认情况下，通知消息仅在步数修改失败时才会发送到 Telegram。如果成功修改步数，将不会发送通知。
-- 此项目仅供学习和测试使用，不建议用于违反应用程序的使用条款或条件。
+- Telegram 推送只会在脚本执行失败时发送通知，成功修改步数不会触发推送。
+- 默认的最小和最大步数为 500000 到 80000 步，你可以根据需要进行自定义。
+- 默认的运行时间为每天的UTC时间上午10点6分，你可以在工作流文件中自定义。
 
-## 结语
+## 感谢使用
 
-通过本项目，你可以轻松自动化修改指定账户的步数，并通过 Telegram 接收通知消息，以便随时了解步数修改情况。希望你能够充分利用这个项目，如果有任何问题或建议，请随时提出。你可以自定义步数修改范围和运行时间以满足特定需求。
+感谢使用这个自动化工作流项目！如果你有任何问题或建议，欢迎提交 Issue 或 Pull Request 来改进项目。祝你的 Python 脚本顺利运行！
