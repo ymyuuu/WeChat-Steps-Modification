@@ -1,44 +1,51 @@
 # WeChat-Steps-Modification
 
-这个项目是一个 GitHub Actions 自动化工作流，可以定期或在代码推送到主分支时运行你的 Python 脚本。它还支持 Telegram 推送，仅在脚本执行失败时才会发送通知。以下是关于项目的详细介绍和使用方法。
-
-## 项目简介
-
-这个项目旨在帮助你自动运行 Python 脚本，并使用 GitHub Actions 进行调度。你可以定期运行脚本，也可以在代码推送到主分支时触发脚本的运行。如果脚本执行失败，你将收到 Telegram 推送通知，以便及时处理问题。
-<img width="876" alt="image" src="https://github.com/ymyuuu/WeChat-Steps-Modification/assets/135582157/2034a3bc-4052-4394-b4ac-0891329984a9">
+这个项目旨在帮助你定期运行Python脚本，以便在需要时修改特定账号的步数。脚本运行失败时，会通过Telegram向你发送通知，以便你可以及时采取行动。以下是关于如何使用和配置该项目的详细说明。
+<img width="876" alt="image" src="https://github.com/ymyuuu/WeChat-Steps-Modification/assets/135582157/7325fabb-f20d-4835-8e71-5ce0fc3d22d3">
 
 
-## 如何使用
+## 使用方法
 
-### 步骤 1: Fork 该项目
+### 1. Fork 本仓库
 
-首先，你需要 Fork 这个项目到你自己的 GitHub 仓库。点击页面右上角的 "Fork" 按钮来复制项目到你的账户下。
+首先，点击本仓库右上角的 "Fork" 按钮，将项目复制到你自己的GitHub账户下。
 
-### 步骤 2: 设置 Telegram 推送
+### 2. 配置 Secrets
 
-在项目设置中，你需要设置以下的 Secrets，以便项目可以发送 Telegram 推送通知。
+在你的GitHub仓库中，点击上方菜单中的 "Settings"，然后选择 "Secrets" 选项卡。你需要添加以下几个Secrets以便项目正常工作：
 
-- `TELEGRAM_API_TOKEN`：你的 Telegram Bot API Token。
-- `TELEGRAM_CHAT_ID`：你的 Telegram 聊天 ID，可以是个人聊天或群组聊天的 ID。
+- `TELEGRAM_API_TOKEN`: 你的Telegram机器人API Token。你可以从 [BotFather](https://core.telegram.org/bots#botfather) 获取它。
 
-### 步骤 3: 设置运行时间
+- `TELEGRAM_CHAT_ID`: 你希望接收通知的Telegram聊天ID。你可以从 [userinfobot](https://core.telegram.org/bots#usernames-and-telegram-ids) 获取它。
 
-默认情况下，该工作流默认会在每天的UTC时间上午10点6分运行一次。你可以根据自己的需求修改运行时间，编辑 `.github/workflows/main.yml` 文件中的 `schedule` 部分。有关如何配置 Cron 表达式的详细信息，请参考 [Cron 表达式生成器](https://crontab.guru/)。
+- `ACCOUNTS_AND_PASSWORDS`: 你想要修改步数的账号和密码对，以分号分隔。每个对之间使用逗号分隔。例如，`username1,password1;username2,password2`。请确保保密这个Secrets以保护你的账号信息。
 
-### 步骤 4: 自定义步数修改
+### 3. 自定义脚本
 
-Python 脚本中包含了一个步数修改函数 `modify_steps`，它用于随机生成指定账号的步数并进行修改。你可以根据需要修改步数的最小值和最大值。
+在本仓库中，你可以找到一个名为 `py.py` 的Python脚本文件。这个脚本用于修改账号的步数。你可以根据自己的需求修改这个脚本，例如更改最小和最大步数，修改API请求的URL等。
 
-### 步骤 5: 自定义默认值
+### 4. 自定义运行时间
 
-在 Python 脚本中，有一些默认的设置，包括最小和最大步数、Telegram 推送的条件等。你可以根据需要自定义这些默认值，以满足你的具体需求。
+默认情况下，脚本会在UTC时间的上午10点6分运行（每天一次）。如果你想要更改运行时间，可以编辑 `.github/workflows/main.yml` 文件中的 `schedule` 部分。按照 [Cron表达式](https://docs.github.com/en/actions/learn-github-actions/workflow-syntax-for-github-actions#onschedule) 的格式来配置。
+
+### 5. 自定义最小和最大步数
+
+在脚本的 `__main__` 部分，你可以找到 `min_steps` 和 `max_steps` 变量。你可以根据需要更改这些值，以定义修改步数的范围。
 
 ## 注意事项
 
-- Telegram 推送只会在脚本执行失败时发送通知，成功修改步数不会触发推送。
-- 默认的最小和最大步数为 500000 到 80000 步，你可以根据需要进行自定义。
-- 默认的运行时间为每天的UTC时间上午10点6分，你可以在工作流文件中自定义。
+- **Telegram通知**：脚本会在运行失败时向你的Telegram账号发送通知。如果脚本成功运行但不修改步数，不会发送通知。
 
-## 感谢使用
+- **默认设置**：脚本默认使用了最小步数为50000，最大步数为80000的设置，以及在UTC 时间上午10点6分运行的计划。你可以根据需要进行自定义。
 
-感谢使用这个自动化工作流项目！如果你有任何问题或建议，欢迎提交 Issue 或 Pull Request 来改进项目。祝你的 Python 脚本顺利运行！
+- **账号信息**：请务必保护好你的账号信息，特别是 `ACCOUNTS_AND_PASSWORDS` Secret。不要将这些信息公开。
+
+- **定期检查**：定期检查项目是否正常运行，以确保你的账号步数得到及时更新。
+
+通过遵循以上步骤，你可以轻松使用这个项目来定期修改特定账号的步数并接收通知。如果你有任何问题或需要进一步的帮助，欢迎提出问题或提出建议。
+
+## 许可证
+
+本项目采用 MIT 许可证。详细信息请参阅 [LICENSE](LICENSE) 文件。
+
+感谢你的使用！如果你对这个项目有任何改进或建议，也欢迎贡献代码或提出问题。
