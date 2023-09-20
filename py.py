@@ -41,7 +41,8 @@ def modify_steps(account, password, min_steps=None, max_steps=None):
         'account': account,
         'response': result.get('message', 'No message found in response')
     }
-
+    
+# 默认使用了最小步数为50000，最大步数为80000
 if __name__ == "__main__":
     min_steps = 50000
     max_steps = 80000
