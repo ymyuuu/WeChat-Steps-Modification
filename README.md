@@ -1,4 +1,4 @@
-# 项目名称: WeChat-Steps-Modification
+# WeChat-Steps-Modification
 
 这个项目是一个 GitHub Actions 自动化工作流，可以定期或在代码推送到主分支时运行你的 Python 脚本。它还支持 Telegram 推送，仅在脚本执行失败时才会发送通知。以下是关于项目的详细介绍和使用方法。
 
