@@ -34,7 +34,7 @@ def modify_steps(account, password, min_steps=None, max_steps=None):
     
     # 检查响应是否不是"success"，然后发送Telegram消息
     if result.get('message') != 'success':
-        telegram_message = f"Steps_modifier\n\n账号: {account}\n响应: {result.get('message', 'No message found in response')}"
+        telegram_message = f"<b>Steps_modifier</b>\n\n账号: {account}\n响应: {result.get('message', 'No message found in response')}"
         send_telegram_message(telegram_message)
 
     return {
