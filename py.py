@@ -11,13 +11,24 @@ telegram_chat_id = os.environ['TELEGRAM_CHAT_ID']
 accounts_and_passwords = os.environ['ACCOUNTS_AND_PASSWORDS']
 account_password_pairs = [pair.split(',') for pair in accounts_and_passwords.split(';')]
 
+# def send_telegram_message(message):
+#     telegram_url = f"https://api.telegram.org/bot{telegram_api_token}/sendMessage"
+#     data = {
+#         'chat_id': telegram_chat_id,
+#         'text': message
+#     }
+#     response = requests.post(telegram_url, data=data)
+
 def send_telegram_message(message):
-    telegram_url = f"https://api.telegram.org/bot{telegram_api_token}/sendMessage"
-    data = {
-        'chat_id': telegram_chat_id,
-        'text': message
-    }
-    response = requests.post(telegram_url, data=data)
+    if send_telegram_message_flag:
+        telegram_url = f"https://api.telegram.org/bot{telegram_api_token}/sendMessage"
+        data = {
+            'chat_id': telegram_chat_id,
+            'text': message,
+            'parse_mode': 'HTML'  # 设置消息格式为HTML，以支持加粗等特性
+        }
+        response = requests.post(telegram_url, data=data)
+
 
 def modify_steps(account, password, min_steps=None, max_steps=None):
     try:
