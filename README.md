@@ -1,8 +1,8 @@
 # WeChat-Steps-Modification
 
 这个项目旨在帮助你定期运行Python脚本，以便在需要时修改特定账号的步数。脚本运行失败时，会通过Telegram向你发送通知，以便你可以及时采取行动。以下是关于如何使用和配置该项目的详细说明。
-
 <img width="876" alt="image" src="https://github.com/ymyuuu/WeChat-Steps-Modification/assets/135582157/7325fabb-f20d-4835-8e71-5ce0fc3d22d3">
+
 
 ## 使用方法
 
@@ -32,19 +32,6 @@
 
 在脚本的 `__main__` 部分，你可以找到 `min_steps` 和 `max_steps` 变量。你可以根据需要更改这些值，以定义修改步数的范围。
 
-### 6. 控制是否发送Telegram通知
-
-在 `.github/workflows/main.yml` 文件中，我们添加了一个名为 `SEND_TELEGRAM_MESSAGE` 的环境变量，用于控制是否发送Telegram通知。默认情况下，它被设置为 `true`，表示发送通知。如果你不希望发送通知，可以将其设置为 `false`。例如：
-
-```yaml
-- name: Run Python script
-  env:
-    TELEGRAM_API_TOKEN: ${{ secrets.TELEGRAM_API_TOKEN }}
-    TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
-    ACCOUNTS_AND_PASSWORDS: ${{ secrets.ACCOUNTS_AND_PASSWORDS }}
-    SEND_TELEGRAM_MESSAGE: false  # 设置为 true 或 false，控制是否发送Telegram消息
-  run: python py.py 
-```
 
 ## 注意事项
 
@@ -63,6 +50,3 @@
 本项目采用 MIT 许可证。详细信息请参阅 [LICENSE](LICENSE) 文件。
 
 感谢你的使用！如果你对这个项目有任何改进或建议，也欢迎贡献代码或提出问题。
-
-
-在更新后的 README.md 文件中，添加了有关如何控制是否发送 Telegram 通知的介绍，并示例了如何在 GitHub Actions 的 YAML 文件中设置 `SEND_TELEGRAM_MESSAGE` 环境变量。
