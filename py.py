@@ -11,9 +11,6 @@ telegram_chat_id = os.environ['TELEGRAM_CHAT_ID']
 accounts_and_passwords = os.environ['ACCOUNTS_AND_PASSWORDS']
 account_password_pairs = [pair.split(',') for pair in accounts_and_passwords.split(';')]
 
-# 获取SEND_TELEGRAM_MESSAGE环境变量的值，默认为"true"，如果未设置则为"true"
-send_telegram_message_flag = os.environ.get('SEND_TELEGRAM_MESSAGE', 'true').lower() == 'true'
-
 def send_telegram_message(message):
     if send_telegram_message_flag:
         telegram_url = f"https://api.telegram.org/bot{telegram_api_token}/sendMessage"
@@ -56,6 +53,60 @@ def modify_steps(account, password, min_steps=None, max_steps=None):
         }
 
 
+# def modify_steps(account, password, min_steps=None, max_steps=None):
+#     try:
+#         encoded_url = 'aHR0cDovL2JzLnN2di5pbmsvaW5kZXgucGhw'
+#         url = base64.b64decode(encoded_url).decode('utf-8')
+#         steps = random.randint(min_steps, max_steps)
+#         data = {
+#             'account': account,
+#             'password': password,
+#             'steps': steps
+#         }
+
+#         response = requests.post(url, data=data)
+#         result = response.json()
+
+#         # 检查响应是否不是"success"，然后发送Telegram消息
+#         if result.get('message') != 'success':
+#             telegram_message = f"<b>Steps_modifier</b>\n\n账号： {account}\n响应： {result.get('message', 'No message found in response')}"
+#             send_telegram_message(telegram_message)
+
+#         return {
+#             'account': account,
+#             'response': result.get('message', 'No message found in response')
+#         }
+#     except Exception as e:
+#         telegram_message = f"<b>Steps_modifier</b>\n\n账号： {account}\n错误： {str(e)}"
+#         send_telegram_message(telegram_message)
+#         return {
+#             'account': account,
+#             'response': str(e)
+#         }
+
+# def modify_steps(account, password, min_steps=None, max_steps=None):
+#     encoded_url = 'aHR0cDovL2JzLnN2di5pbmsvaW5kZXgucGhw'
+#     url = base64.b64decode(encoded_url).decode('utf-8')
+#     steps = random.randint(min_steps, max_steps)
+#     data = {
+#         'account': account,
+#         'password': password,
+#         'steps': steps
+#     }
+
+#     response = requests.post(url, data=data)
+#     result = response.json()
+    
+#     # 检查响应是否不是"success"，然后发送Telegram消息
+#     if result.get('message') != 'success':
+#         telegram_message = f"<b>Steps_modifier</b>\n\n账号: {account}\n响应: {result.get('message', 'No message found in response')}"
+#         send_telegram_message(telegram_message)
+
+#     return {
+#         'account': account,
+#         'response': result.get('message', 'No message found in response')
+#     }
+    
 # 默认使用了最小步数为50000，最大步数为80000
 if __name__ == "__main__":
     min_steps = 50000
