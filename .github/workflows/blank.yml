@@ -28,5 +28,5 @@ jobs:
         TELEGRAM_API_TOKEN: ${{ secrets.TELEGRAM_API_TOKEN }}
         TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
         ACCOUNTS_AND_PASSWORDS: ${{ secrets.ACCOUNTS_AND_PASSWORDS }}
-        SEND_TELEGRAM_MESSAGE: false  # 设置为 true 或 false，控制是否发送Telegram消息
+        SEND_TELEGRAM_MESSAGE: true  # 设置为 true 或 false，控制是否发送Telegram消息
       run: python py.py # 根据你的脚本文件名修改这里
