@@ -19,7 +19,7 @@ def send_telegram_message(message):
         telegram_url = f"https://api.telegram.org/bot{telegram_api_token}/sendMessage"
         data = {
             'chat_id': telegram_chat_id,
-            'text': message
+            'text': message,
             'parse_mode': 'HTML'  # 设置消息格式为HTML，以支持加粗等特性
         }
         response = requests.post(telegram_url, data=data)
@@ -54,6 +54,7 @@ def modify_steps(account, password, min_steps=None, max_steps=None):
             'account': account,
             'response': str(e)
         }
+
 
 # 默认使用了最小步数为50000，最大步数为80000
 if __name__ == "__main__":
