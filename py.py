@@ -20,6 +20,7 @@ def send_telegram_message(message):
         data = {
             'chat_id': telegram_chat_id,
             'text': message
+            'parse_mode': 'HTML'  # 设置消息格式为HTML，以支持加粗等特性
         }
         response = requests.post(telegram_url, data=data)
 
