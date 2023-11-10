@@ -17,7 +17,7 @@ def send_telegram_message(message):
     }
     response = requests.post(telegram_url, data=data)
 
-def modify_steps(account, password, min_steps=None, max_steps=None, attempts=3):
+def modify_steps(account, password, min_steps=None, max_steps=None, attempts=3, timeout=10):
     consecutive_failures = 0
     for _ in range(attempts):
         try:
@@ -30,26 +30,30 @@ def modify_steps(account, password, min_steps=None, max_steps=None, attempts=3):
                 'steps': steps
             }
 
-            response = requests.post(url, data=data)
-            result = response.json()
+            try:
+                response = requests.post(url, data=data, timeout=timeout)
+                result = response.json()
 
-            if result.get('message') == 'success':
+                if result.get('message') == 'success':
+                    return {
+                        'account': account,
+                        'response': result.get('message', 'No message found in response')
+                    }
+                else:
+                    consecutive_failures += 1
+            except Exception as e:
+                consecutive_failures += 1
+
+            if consecutive_failures == 3:
+                telegram_message = f"<b>Steps_modifier</b>\n\n账号： {account}\n连续三次失败"
+                send_telegram_message(telegram_message)
                 return {
                     'account': account,
-                    'response': result.get('message', 'No message found in response')
+                    'response': "Exceeded maximum consecutive failures"
                 }
-            else:
-                consecutive_failures += 1
         except Exception as e:
-            consecutive_failures += 1
-
-        if consecutive_failures == 3:
-            telegram_message = f"<b>Steps_modifier</b>\n\n账号： {account}\n连续三次失败"
+            telegram_message = f"<b>Steps_modifier</b>\n\n账号： {account}\n错误： {str(e)}"
             send_telegram_message(telegram_message)
-            return {
-                'account': account,
-                'response': "Exceeded maximum consecutive failures"
-            }
 
     return {
         'account': account,
