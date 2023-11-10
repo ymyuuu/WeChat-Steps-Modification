@@ -14,11 +14,11 @@
 
 在你的GitHub仓库中，点击上方菜单中的 "Settings"，然后选择 "Secrets" 选项卡。你需要添加以下几个Secrets以便项目正常工作：
 
-- `TELEGRAM_API_TOKEN`: 你的Telegram机器人API Token。你可以从 [BotFather](https://core.telegram.org/bots#botfather) 获取它。
+- `TELEGRAM_API_TOKEN`: 你的Telegram机器人API Token。你可以从 [BotFather](https://core.telegram.org/bots#botfather) 获取它。（选填）
 
-- `TELEGRAM_CHAT_ID`: 你希望接收通知的Telegram聊天ID。你可以从 [userinfobot](https://core.telegram.org/bots#usernames-and-telegram-ids) 获取它。
+- `TELEGRAM_CHAT_ID`: 你希望接收通知的Telegram聊天ID。你可以从 [userinfobot](https://core.telegram.org/bots#usernames-and-telegram-ids) 获取它。（选填）
 
-- `ACCOUNTS_AND_PASSWORDS`: 你想要修改步数的账号和密码对，以分号分隔。每个对之间使用逗号分隔。例如，`username1,password1;username2,password2`。请确保保密这个Secrets以保护你的账号信息。
+- `ACCOUNTS_AND_PASSWORDS`: 你想要修改步数的账号和密码对，以分号分隔。每个对之间使用逗号分隔。例如，`username1,password1;username2,password2`。请确保保密这个Secrets以保护你的账号信息。（必填）
 
 ### 3. 自定义脚本
 
