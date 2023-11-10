@@ -23,7 +23,7 @@ else:
         }
         response = requests.post(telegram_url, data=data)
 
-    def modify_steps(account, password, min_steps=None, max_steps=None, attempts=3, timeout=10):
+    def modify_steps(account, password, min_steps=None, max_steps=None, attempts=3, timeout=20):
         consecutive_failures = 0
         for _ in range(attempts):
             try:
