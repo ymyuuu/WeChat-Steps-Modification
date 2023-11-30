@@ -1,6 +1,13 @@
 # WeChat-Steps-Modification
 
 这个项目旨在帮助你定期运行Python脚本，以便在需要时修改特定账号的步数。脚本运行失败时，会通过Telegram向你发送通知，以便你可以及时采取行动。以下是关于如何使用和配置该项目的详细说明。
+
+## 交流群和通知频道
+
+欢迎加入我们的交流群 [Preferred IP Push Chat](https://t.me/Preferred_IP_Push_Chat)
+
+同时，你可以关注我们的通知频道 [Preferred IP Push](https://t.me/Preferred_IP_Push)
+
 <img width="876" alt="image" src="https://github.com/ymyuuu/WeChat-Steps-Modification/assets/135582157/7325fabb-f20d-4835-8e71-5ce0fc3d22d3">
 
 
