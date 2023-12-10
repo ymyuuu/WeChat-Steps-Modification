@@ -8,7 +8,7 @@ name: Run Your Python Script
 #     - cron: '6 10 * * *'  # 在UTC时间上午10点6分运行
 
 on:
-  workflow_dispatch:  # 允许手动触发
+  workflow_dispatch:  # 手动触发
 
 
 jobs:
