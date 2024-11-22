@@ -2,13 +2,10 @@
 
 这个项目旨在帮助你定期运行Python脚本，以便在需要时修改特定账号的步数。脚本运行失败时，会通过Telegram向你发送通知，以便你可以及时采取行动。以下是关于如何使用和配置该项目的详细说明。
 
-## 交流群和通知频道
+- 群聊: [HeroCore](https://t.me/HeroCore)
+- 频道: [HeroMsg](https://t.me/HeroMsg)
 
-欢迎加入我们的交流群 [Preferred IP Push Chat](https://t.me/Preferred_IP_Push_Chat)
-
-同时，你可以关注我们的通知频道 [Preferred IP Push](https://t.me/Preferred_IP_Push)
-
-<img width="876" alt="image" src="https://github.com/ymyuuu/WeChat-Steps-Modification/assets/135582157/7325fabb-f20d-4835-8e71-5ce0fc3d22d3">
+<img width="1045" alt="image" src="https://github.com/user-attachments/assets/29e51606-ba29-4f75-b398-c16550127243">
 
 
 ## 使用方法
@@ -29,7 +26,7 @@
 
 ### 3. 自定义脚本
 
-在本仓库中，你可以找到一个名为 `py.py` 的Python脚本文件。这个脚本用于修改账号的步数。你可以根据自己的需求修改这个脚本，例如更改最小和最大步数，修改API请求的URL等。
+在本仓库中，你可以找到一个名为 `steps.py` 的Python脚本文件。这个脚本用于修改账号的步数。你可以根据自己的需求修改这个脚本，例如更改最小和最大步数，修改API请求的URL等。
 
 ### 4. 自定义运行时间
 
