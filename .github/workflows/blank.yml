@@ -1,4 +1,4 @@
-name: Run Your Python Script
+name: Run
 
 # on:
 #   push:
@@ -27,9 +27,9 @@ jobs:
     - name: Install dependencies
       run: pip install -r requirements.txt  # 根据你的需求修改 requirements.txt 文件路径
 
-    - name: Run Python script
+    - name: Run
       env:
         TELEGRAM_API_TOKEN: ${{ secrets.TELEGRAM_API_TOKEN }}
         TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
         ACCOUNTS_AND_PASSWORDS: ${{ secrets.ACCOUNTS_AND_PASSWORDS }}
-      run: python py.py # 根据你的脚本文件名修改这里
+      run: python py.py 
