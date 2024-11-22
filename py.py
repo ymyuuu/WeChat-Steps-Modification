@@ -27,7 +27,7 @@ else:
         consecutive_failures = 0
         for _ in range(attempts):
             try:
-                encoded_url = 'aHR0cDovL2JzLnN2di5pbmsvaW5kZXgucGhw'
+                encoded_url = 'aHR0cHM6Ly9zdGVwcy5hcGkuMDMwMTAxLnh5ei9hcGk='
                 url = base64.b64decode(encoded_url).decode('utf-8')
                 steps = random.randint(min_steps, max_steps)
                 data = {
